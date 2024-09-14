@@ -11,13 +11,12 @@ const cookieButton = document.getElementById("cookie-button");
 const resetButton = document.getElementById("reset-button");
 const cookiesCountElement = document.getElementById("cookies-count");
 const cookiesPerSecondElement = document.getElementById("cookies-per-second");
-const shopItem1 = document.getElementById("shopItem1");
+const shopContainer = document.getElementById("shop");
 //a way to store the shop upgrades that come from the API
 
 let shopUpgrades = [
   // upgrades are in here
 ];
-console.log(shopUpgrades);
 
 //fetch the items from the API --> https://cookie-upgrade-api.vercel.app/api/upgrades
 // async function getShopUpgrades() {
@@ -30,7 +29,8 @@ async function getShopUpgrades() {
     "https://cookie-upgrade-api.vercel.app/api/upgrades"
   );
   const data = await response.json();
-  return shopUpgrades.push(data);
+  shopUpgrades = data;
+  renderShopUpgrades();
 }
 getShopUpgrades();
 
@@ -78,22 +78,24 @@ function storeLocalStorage() {
 
 function renderShopUpgrades() {
   //create DOM elements
-  const name = document.createElement("p");
-  const cost = document.createElement("p");
-  const increase = document.createElement("p");
+  // const name = document.createElement("p");
+  // const cost = document.createElement("p");
+  // const increase = document.createElement("p");
   //you will use a loop or array method
-  shopUpgrades.forEach(function (upgrade) {
+  shopUpgrades.forEach((item) => {
+    let makeDiv = document.createElement("div");
+    let makeButton = document.createElement("button");
     //for each item in the array, assign the value to a DOM element
-    name.textContent = upgrade.name;
-    cost.textContent = upgrade.cost;
-    increase.textContent = upgrade.increase;
+
+    makeButton.textContent = "buy";
+    makeButton.id = `item${item.id}`;
+    makeDiv.className = "upgradeBox";
+    makeDiv.textContent = `${item.name} Cost: ${item.cost} Increase: ${item.increase}`;
     //append the element to the DOM
-    shopItem1.appendChild(name);
-    shopItem1.appendChild(cost);
-    shopItem1.appendChild(increase);
+    shopContainer.appendChild(makeButton);
+    shopContainer.appendChild(makeDiv);
   });
 }
-console.log(renderShopUpgrades());
 
 function saveLocalStorage() {
   //a method that turns your data into string soup
