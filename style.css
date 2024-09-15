@@ -1,11 +1,115 @@
 /* can also aff a css reset */
 
-* {
-  background-color: lightsalmon;
+body {
+  position: relative;
+  background-image: url(links/chocolate_land_backdrop_1753798485.png);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
 }
 
 h1 {
-  color: rgb(116, 87, 13);
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  font-size: 4vw;
+  font-family: papyrus;
+  color: rgb(255, 187, 0);
+  background-color: rgb(3, 3, 3, 0.4);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  width: 60%;
 }
 
+#cookie-button {
+  position: absolute;
+  left: 52vw;
+  margin-top: 10vh;
+  background-color: transparent;
+  width: 33vw;
+  height: 33vh;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#cookie-button img {
+  min-width: 100%;
+  min-height: 100%;
+  display: block;
+  overflow: visible;
+  object-fit: cover;
+}
 /* please add media queries, not optional */
+
+#cookie-button:active {
+  border: none;
+  outline: none;
+  transform: scale(0.9);
+  border: none;
+  outline: none;
+}
+
+#cookie-button:hover {
+  cursor: pointer;
+}
+
+#score-container {
+  font-size: max(1.5vw, 18px);
+  position: absolute;
+  left: 54vw;
+  background-color: transparent;
+  width: 30vw;
+  border: 0;
+  text-align: center;
+  margin-top: 55vh;
+  background-color: rgb(3, 3, 3, 0.4);
+  backdrop-filter: blur(2px);
+  border-radius: 20px;
+  word-wrap: normal;
+}
+
+#shop {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1vw, min(8px);
+  position: absolute;
+  border-radius: 10px;
+  width: 38vw;
+  left: 2vw;
+  color: rgb(255, 187, 0);
+  border: 10px;
+  background-color: rgb(3, 3, 3, 0.4);
+  word-wrap: normal;
+  backdrop-filter: blur(2px);
+  margin: auto;
+  margin-top: 8vh;
+}
+
+#upgradeBox1 {
+  width: 30vw;
+}
+
+button {
+  margin: 5px;
+}
+
+#shop > button {
+  position: relative;
+}
+div {
+  margin: 5px;
+}
+
+#cookies-count {
+  color: rgb(255, 187, 0);
+}
+
+#cookies-per-second {
+  color: rgb(255, 187, 0);
+}

@@ -38,13 +38,14 @@ getShopUpgrades();
 //select the cookie img or button
 //write your event handler and event listener
 function handleCookieClick() {
-  cookiesCount++;
+  cookiesCount += cookiesPerSecond;
   updateCookieCount();
   //when i click on the cookie the value of cookieCount goes up by one
 }
 
 function handleResetButton() {
   cookiesCount = 0;
+  cookiesPerSecond = 1;
   updateCookieCount();
 }
 
@@ -77,6 +78,7 @@ function storeLocalStorage() {
 //you might or might not use these oossible solutions to problems you might find
 
 function renderShopUpgrades() {
+  shopContainer.innerHTML = "";
   //create DOM elements
   // const name = document.createElement("p");
   // const cost = document.createElement("p");
@@ -89,15 +91,25 @@ function renderShopUpgrades() {
 
     makeButton.textContent = "buy";
     makeButton.id = `item${item.id}`;
-    makeDiv.className = "upgradeBox";
+    // if (cookiesCount < item.cost) {
+    //   makeButton.disabled = true;
+    // } else {
+    //   makeButton.disabled = false;
+    // }
+    makeButton.addEventListener("click", () => {
+      if (cookiesCount >= item.cost) {
+        cookiesCount -= item.cost;
+        cookiesPerSecond += item.increase;
+        updateCookieCount();
+        renderShopUpgrades();
+      }
+    });
+    makeDiv.className = `upgradeBox${item.id}`;
+    // makeDiv.className = "upgradeBox";
     makeDiv.textContent = `${item.name} Cost: ${item.cost} Increase: ${item.increase}`;
-    //append the element to the DOM
-    shopContainer.appendChild(makeButton);
-    shopContainer.appendChild(makeDiv);
-  });
-}
 
-function saveLocalStorage() {
-  //a method that turns your data into string soup
-  //a method to set the data into key and local storage
+    //append the element to the DOM
+    shopContainer.appendChild(makeDiv);
+    shopContainer.appendChild(makeButton);
+  });
 }
