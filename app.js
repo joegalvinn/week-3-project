@@ -34,6 +34,21 @@ async function getShopUpgrades() {
 }
 getShopUpgrades();
 
+function loadFromLocalStorage() {
+  const savedCookiesCount = localStorage.getItem("cookiesCount");
+  const savedCookiesPerSecond = localStorage.getItem("cookiesPerSecond");
+
+  if (savedCookiesCount !== null) {
+    cookiesCount = parseInt(savedCookiesCount, 10);
+  }
+  if (savedCookiesPerSecond !== null) {
+    cookiesPerSecond = parseInt(savedCookiesPerSecond, 10);
+  }
+
+  updateCookieCount();
+}
+
+loadFromLocalStorage();
 //an event listener to click on the cookie button
 //select the cookie img or button
 //write your event handler and event listener
